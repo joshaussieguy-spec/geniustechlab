@@ -473,6 +473,18 @@ function build() {
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), newIndexContent);
   console.log(`✅ Built: index.html (new dark design with ${posts.length} posts)`);
 
+  // Copy CSS and other static assets to public/
+  const cssSourceDir = path.join(__dirname, 'css');
+  const cssDestDir = path.join(OUTPUT_DIR, 'css');
+  if (fs.existsSync(cssSourceDir)) {
+    if (!fs.existsSync(cssDestDir)) fs.mkdirSync(cssDestDir, { recursive: true });
+    const cssFiles = fs.readdirSync(cssSourceDir);
+    cssFiles.forEach(file => {
+      fs.copyFileSync(path.join(cssSourceDir, file), path.join(cssDestDir, file));
+    });
+    console.log(`✅ Copied: ${cssFiles.length} CSS files`);
+  }
+
   // Write search index JSON
   const searchIndex = posts.map(p => ({
     title: p.title,
