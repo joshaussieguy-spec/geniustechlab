@@ -21,7 +21,7 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        run: npm install marked
+        run: npm install
 
       - name: Build site
         run: node build.js
