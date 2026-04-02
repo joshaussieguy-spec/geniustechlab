@@ -466,10 +466,12 @@ function build() {
     .map(([name, count]) => ({ name, count }))
     .sort((a, b) => b.count - a.count);
 
-  // Write index
-  const indexHtml = indexTemplate(posts, tagCloud);
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), indexHtml);
-  console.log(`✅ Built: index.html (${posts.length} posts)`);
+  // Copy the new index.html template (new dark design) instead of generating it
+  // The new template is static and located in the root directory
+  const newIndexPath = path.join(__dirname, 'index.html');
+  const newIndexContent = fs.readFileSync(newIndexPath, 'utf-8');
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), newIndexContent);
+  console.log(`✅ Built: index.html (new dark design with ${posts.length} posts)`);
 
   // Write search index JSON
   const searchIndex = posts.map(p => ({
