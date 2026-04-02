@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const marked = require('marked');
+const { marked } = require('marked');
 const TurndownService = require('turndown');
 
 const SITE_URL = 'https://geniustechlab.com';
@@ -410,10 +410,6 @@ function build() {
 
         // Plain text for search and excerpt fallback
         const plainText = stripHTML(html);
-
-        const slug = file.replace('.md', '').toLowerCase();
-        const category = meta.category || dir.split(path.sep).pop();
-        const tocItems = generateTOC(html);
 
         const slug = file.replace('.md', '').toLowerCase();
         const category = meta.category || dir.split(path.sep).pop();
