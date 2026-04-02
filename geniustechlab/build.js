@@ -5,10 +5,15 @@
  * Enhanced with reading time, tags, search index, and TOC
  */
 
-const fs = require('fs');
-const path = require('path');
-const { marked } = require('marked');
-const TurndownService = require('turndown');
+import fs from 'fs';
+import path from 'path';
+import { marked } from 'marked';
+import TurndownService from 'turndown';
+import { fileURLToPath } from 'url';
+
+// ESM equivalent of __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const SITE_URL = 'https://geniustechlab.com';
 const POSTS_DIR = './posts';
