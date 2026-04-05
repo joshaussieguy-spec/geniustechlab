@@ -7,3 +7,7 @@ public/
 .cache/
 *.swp
 *.swo
+
+# Subscriber data
+data/
+*.json
