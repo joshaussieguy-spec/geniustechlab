@@ -175,6 +175,49 @@
             </div>
         </div>
     </section>
+    <!-- Email Subscription Section -->
+    <section class="subscription-section">
+        <div class="container">
+            <div class="email-subscription" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; padding: 2rem; margin: 2rem 0; text-align: center;">
+                <h3 style="color: white; margin-bottom: 0.5rem; font-size: 1.5rem;">🚀 Get Expert Tech Guides Weekly</h3>
+                <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem;">Join 50K+ readers getting the best homelab, networking, and hardware recommendations</p>
+                
+                <form class="email-form" id="subscribe-form" style="display: flex; gap: 1rem; max-width: 500px; margin: 0 auto;">
+                    <input type="email" placeholder="Your best email" required id="email-input" style="flex: 1; padding: 0.75rem 1rem; border: none; border-radius: 8px; font-size: 1rem;">
+                    <button type="submit" style="padding: 0.75rem 2rem; background: white; color: #667eea; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">Subscribe Free</button>
+                </form>
+                
+                <div class="email-message" id="subscribe-message" style="color: white; margin-top: 1rem; display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email-input').value;
+        const messageDiv = document.getElementById('subscribe-message');
+        
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            
+            const data = await response.json();
+            messageDiv.textContent = data.message || 'Successfully subscribed!';
+            messageDiv.style.display = 'block';
+            
+            if (response.ok) {
+                document.getElementById('email-input').value = '';
+            }
+        } catch (error) {
+            messageDiv.textContent = 'Error subscribing. Please try again.';
+            messageDiv.style.display = 'block';
+        }
+    });
+    </script>
 
     
 
@@ -214,7 +257,7 @@
                 <div class="footer-section">
                     <h4>Subscribe</h4>
                     <p>Get weekly guides and product updates.</p>
-                    <div class="newsletter-form">
+                    <div class="newsletter-form" id="footer-subscribe">
                         <input type="email" placeholder="Your email">
                         <button>Subscribe</button>
                     </div>
@@ -225,5 +268,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    // Footer subscription form
+    document.querySelector('#footer-subscribe button').addEventListener('click', async () => {
+        const input = document.querySelector('#footer-subscribe input');
+        const email = input.value;
+        if (!email) return;
+        
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            });
+            const data = await response.json();
+            alert(data.message || 'Successfully subscribed!');
+            if (response.ok) input.value = '';
+        } catch (error) {
+            alert('Error subscribing. Please try again.');
+        }
+    });
+    </script>
 </body>
 </html>
