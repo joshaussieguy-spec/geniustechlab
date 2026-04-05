@@ -147,6 +147,13 @@ function postTemplate(title, date, content, category, tags, amazonProduct, slug,
   <link rel="stylesheet" href="/styles/main.css">
 
   <style>
+    body { background: #0a0a0a; color: #e0e0e0; }
+    .post-container { max-width: 800px; margin: 60px auto; padding: 30px; }
+    .post-title { font-size: 36px; margin: 20px 0; color: #fff; }
+    .post-meta { color: #888; margin-bottom: 30px; }
+    .post-content { line-height: 1.8; font-size: 16px; }
+    .post-content a { color: #3b82f6; text-decoration: none; }
+    
     body {
       background: #0a0a0a;
       color: #e0e0e0;
@@ -403,6 +410,9 @@ function postTemplate(title, date, content, category, tags, amazonProduct, slug,
   </style>
 </head>
 <body>
+  <nav style="background: #000; border-bottom: 1px solid #333; padding: 20px; margin-bottom: 40px;">
+    <a href="/" style="color: #3b82f6; text-decoration: none;">← Back to Home</a>
+  </nav>
   <header>
     <nav>
       <h1><a href="/">⚡ Genius Tech Lab</a></h1>
