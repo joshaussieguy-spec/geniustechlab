@@ -145,6 +145,262 @@ function postTemplate(title, date, content, category, tags, amazonProduct, slug,
   <meta property="og:url" content="${SITE_URL}/${slug}">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="/styles/main.css">
+
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #e0e0e0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header nav {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #333;
+    }
+    
+    header nav h1 a {
+      color: #4ca0ff;
+      text-decoration: none;
+      font-size: 1.5rem;
+    }
+    
+    header nav ul {
+      list-style: none;
+      display: inline-flex;
+      gap: 2rem;
+      margin-left: 2rem;
+    }
+    
+    header nav ul a {
+      color: #b0b0b0;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    header nav ul a:hover {
+      color: #4ca0ff;
+    }
+    
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    
+    article h1 {
+      color: #4ca0ff;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .meta {
+      color: #888;
+      margin-bottom: 1rem;
+    }
+    
+    .meta span {
+      margin-right: 1rem;
+    }
+    
+    .content {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .content h2, .content h3 {
+      color: #4ca0ff;
+      margin-top: 2rem;
+    }
+    
+    .content a {
+      color: #4ca0ff;
+      text-decoration: none;
+      border-bottom: 1px solid #4ca0ff;
+    }
+    
+    .content a:hover {
+      background: rgba(76, 160, 255, 0.1);
+    }
+    
+    .content code {
+      background: #1a1a2e;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .content pre {
+      background: #1a1a2e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+    
+    .affiliate {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      color: white;
+    }
+    
+    .affiliate h3 {
+      color: white;
+      margin-top: 0;
+    }
+    
+    .affiliate .btn {
+      display: inline-block;
+      background: white;
+      color: #667eea;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+    
+    .affiliate .disclaimer {
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      opacity: 0.9;
+    }
+    
+    .toc {
+      background: #1a1a2e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .toc h3 {
+      color: #4ca0ff;
+      margin-top: 0;
+    }
+    
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    
+    .toc li {
+      margin: 0.5rem 0;
+    }
+    
+    .toc a {
+      color: #b0b0b0;
+      text-decoration: none;
+    }
+    
+    .toc a:hover {
+      color: #4ca0ff;
+    }
+    
+    .tags {
+      margin: 1rem 0;
+    }
+    
+    .tag {
+      background: #1a1a2e;
+      color: #4ca0ff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      margin-right: 0.5rem;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+    
+    footer {
+      background: #1a1a2e;
+      color: #888;
+      padding: 3rem 2rem 2rem;
+      margin-top: 4rem;
+      border-top: 1px solid #333;
+    }
+    
+    .newsletter {
+      margin-top: 2rem;
+    }
+    
+    .newsletter h4 {
+      color: #4ca0ff;
+    }
+    
+    .newsletter-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 400px;
+      margin-top: 1rem;
+    }
+    
+    .newsletter-form input {
+      flex: 1;
+      padding: 0.75rem;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      color: white;
+    }
+    
+    .newsletter-form button {
+      padding: 0.75rem 1.5rem;
+      background: #4ca0ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    /* Email subscription form */
+    .email-subscription {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 3rem 0;
+      text-align: center;
+    }
+    
+    .email-subscription h3 {
+      color: white;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .email-subscription p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+    }
+    
+    .email-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .email-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    
+    .email-form button {
+      padding: 0.75rem 2rem;
+      background: white;
+      color: #667eea;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -189,7 +445,45 @@ function postTemplate(title, date, content, category, tags, amazonProduct, slug,
           </aside>
           ` : ''}
 
-          <footer class="article-footer">
+          
+          <!-- Email Subscription -->
+          <div class="email-subscription">
+            <h3>🚀 Get Expert Tech Guides Weekly</h3>
+            <p>Join 50K+ readers getting the best homelab, networking, and hardware recommendations</p>
+            <form class="email-form" id="subscribe-form">
+              <input type="email" placeholder="Your best email" required id="email-input">
+              <button type="submit">Subscribe Free</button>
+            </form>
+            <div class="email-message" id="subscribe-message" style="color: white; margin-top: 1rem; display: none;"></div>
+          </div>
+          
+          <script>
+          document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email-input').value;
+            const messageDiv = document.getElementById('subscribe-message');
+            
+            try {
+              const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+              });
+              
+              const data = await response.json();
+              messageDiv.textContent = data.message || 'Successfully subscribed!';
+              messageDiv.style.display = 'block';
+              
+              if (response.ok) {
+                document.getElementById('email-input').value = '';
+              }
+            } catch (error) {
+              messageDiv.textContent = 'Error subscribing. Please try again.';
+              messageDiv.style.display = 'block';
+            }
+          });
+          </script>
+<footer class="article-footer">
             <div class="share">
               <span>Share this article:</span>
               <div class="share-buttons">
