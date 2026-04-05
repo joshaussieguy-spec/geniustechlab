@@ -1,0 +1,92 @@
+<!-- Email Subscription Form -->
+<div class="email-subscription">
+  <style>
+    .email-subscription {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .email-subscription h3 {
+      color: white;
+      margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+    }
+    .email-subscription p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+    }
+    .email-form {
+      display: flex;
+      gap: 1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .email-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .email-form button {
+      padding: 0.75rem 2rem;
+      background: white;
+      color: #667eea;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .email-form button:hover {
+      transform: scale(1.05);
+    }
+    .email-message {
+      color: white;
+      margin-top: 1rem;
+      display: none;
+    }
+    .email-message.show {
+      display: block;
+    }
+  </style>
+  
+  <h3>🚀 Get Expert Tech Guides Weekly</h3>
+  <p>Join 50K+ readers getting the best homelab, networking, and hardware recommendations</p>
+  
+  <form class="email-form" id="subscribe-form">
+    <input type="email" placeholder="Your best email" required id="email-input">
+    <button type="submit">Subscribe Free</button>
+  </form>
+  
+  <div class="email-message" id="subscribe-message"></div>
+  
+  <script>
+    document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email-input').value;
+      const messageDiv = document.getElementById('subscribe-message');
+      
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        
+        const data = await response.json();
+        messageDiv.textContent = data.message || 'Successfully subscribed!';
+        messageDiv.classList.add('show');
+        
+        if (response.ok) {
+          document.getElementById('email-input').value = '';
+        }
+      } catch (error) {
+        messageDiv.textContent = 'Error subscribing. Please try again.';
+        messageDiv.classList.add('show');
+      }
+    });
+  </script>
+</div>
