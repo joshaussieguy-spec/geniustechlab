@@ -290,5 +290,25 @@
         }
     });
     </script>
-</body>
+
+    <section id="subscribe" class="subscribe-section">
+      <h2>Get Updates</h2>
+      <form class="subscribe-form" onsubmit="subscribeEmail(event)">
+        <input type="email" placeholder="Your email..." required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section><script>
+function subscribeEmail(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input[type=email]').value;
+  fetch('/api/subscribe', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({email})
+  }).then(r => r.json()).then(d => {
+    alert(d.message || 'Subscribed!');
+    e.target.reset();
+  });
+}
+</script></body>
 </html>
